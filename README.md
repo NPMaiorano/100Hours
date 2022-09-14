@@ -12,23 +12,23 @@ The Plant Care Calander is an application I made to help users both new and expe
 
 Frontend:
 
-CSS
+--CSS
 
-javascript
+--Javascript
 
 Backend:
 
-Node.js
+--Node.js
 
-Express
+--Express
 
-MongoDB - database
+--MongoDB - database
 
-Passport - authetification 
+--Passport - authetification 
 
-Ejs - view engine 
+--Ejs - view engine 
 
-Morgan --logging tool for more detailed logs -- in the dev configuration  
+--Morgan --logging tool for more detailed logs -- in the dev configuration  
 
  (Expand on this section)
 
