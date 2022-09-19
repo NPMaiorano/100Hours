@@ -34,10 +34,12 @@ Backend:
 
 
 ## Optimizations
-*(optional)*
+This application is not responisve in its currrent form -- needs CSS -media queries to make mobile friendly & more flexible in browser.
 
-You don't have to include this section but interviewers *love* that you can not only deliver a final product that looks great but also functions efficiently. Did you write something then refactor it later and the result was 5x faster than the original implementation? Did you cache your assets? Things that you write in this section are **GREAT** to bring up in interviews and you can use this section as reference when studying for technical interviews!
+The calendar uses the 'us-en' specfication only - it would be nice to let users set custom information so it is in the format they desire.
 
 ## Lessons Learned:
+
+Having never built a time based application I grossly underestimated the complexity in dealing with time and more importnatnly how we all deal with and handle it differently. For this reason to make things simpler this app uses the 'us-en' specification only. In the futue I would to make this more globaly accessible. 
 
 creating solid schemas is crucial when relying on so much information from teh database. 
