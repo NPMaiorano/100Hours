@@ -9,6 +9,10 @@ const logger = require('morgan')
 const connectDB = require('./config/database')
 const mainRoutes = require('./routes/main')
 const todoRoutes = require('./routes/todos')
+//CALENDAR - new in production
+const calendarRoutes = require('./routes/calendar')
+//NEW method overide
+const methodOverride = require("method-override");
 
 require('dotenv').config({path: './config/.env'})
 
@@ -31,6 +35,9 @@ app.use(
       store: new MongoStore({ mongooseConnection: mongoose.connection }),
     })
   )
+
+//Use forms for put / delete
+app.use(methodOverride("_method"));
   
 // Passport middleware
 app.use(passport.initialize())
@@ -40,24 +47,14 @@ app.use(flash())
   
 app.use('/', mainRoutes)
 app.use('/todos', todoRoutes)
+//CALENDAR - new use in production
+app.use('/calendar', calendarRoutes)
  
 app.listen(process.env.PORT, ()=>{
     console.log('Server is running, you better catch it!')
 })    
-
-//calender 
-const calendar = require("../config/calendar-config");
-//
+//Not sure if this last bit is needed go back to original MVC code to see if this is in it -- if not DELETE THIS
 app.set("view-engine", "ejs");
 const path = require('path');
 __dirname = path.resolve();
 app.use(express.static((path.join(__dirname, 'views'))));
-
-
-app.get("/",(req,res)=>{
-    const year = req.query.year || 2022;
-    const months = ["January", "February", "March", "April", "May", "June", "July",
-    "August", "September", "October", "November", "December"];
-
-    res.render("index.ejs",{calendar: calendar(year),months,year});
-});
