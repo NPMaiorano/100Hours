@@ -173,11 +173,16 @@ function load() {
     calendar.innerHTML = '';
     
     for(let i = 1; i <= paddingDays + daysInMonth; i++){
-        const daySquare = document.createElement('a')
+        const daySquare = document.createElement('form')
         daySquare.classList.add('day');
-        daySquare.setAttribute("href", "/createCalendar");
+        daySquare.setAttribute("value", `${i - paddingDays} ${dt.toLocaleDateString('en-us', {month: 'long'})} ${year}`);
+        daySquare.setAttribute("name", `${i - paddingDays} ${dt.toLocaleDateString('en-us', {month: 'long'})} ${year}`);
+        daySquare.setAttribute("action", '/calendar/createCalendar');
+        daySquare.setAttribute("method", 'POST');
+        
+
         if(i > paddingDays){
-            daySquare.innerText = `${i - paddingDays} ${dt.toLocaleDateString('en-us', {month: 'long'})} ${year}`;
+            daySquare.innerHTML = `${i - paddingDays} <input name='value' value='${i - paddingDays} ${dt.toLocaleDateString('en-us', {month: 'long'})} ${year}'> <input type="submit">`;
             
             daySquare.addEventListener('click', () => {
                 console.log('click');

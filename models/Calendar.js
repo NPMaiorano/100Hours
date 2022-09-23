@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 const CalendarSchema = new mongoose.Schema({
-  calendar: {
+  calendarId: {
     type: String,
     required: true,
   },

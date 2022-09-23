@@ -13,6 +13,7 @@ const todoRoutes = require('./routes/todos')
 const calendarRoutes = require('./routes/calendar')
 //NEW method overide
 const methodOverride = require("method-override");
+const bodyParser = require('body-parser')
 
 require('dotenv').config({path: './config/.env'})
 
@@ -58,3 +59,6 @@ app.set("view-engine", "ejs");
 const path = require('path');
 __dirname = path.resolve();
 app.use(express.static((path.join(__dirname, 'views'))));
+
+//body parser to get date value out of form attribute
+app.use(bodyParser.urlencoded({extended: true}))

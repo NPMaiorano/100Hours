@@ -1,20 +1,21 @@
 //CALENDAR -- controller in production
-const Todo = require('../models/Calendar')
+const Calendar = require('../models/Calendar')
 
 module.exports = {
     getCalendar: async (req,res)=>{
         console.log(req.user)
         try{
-            res.render('calendar.ejs')
-            const  calendarItems = await Calendar.find({userId:req.user.id})
-            res.render('calendar.ejs', {calendar: calendarItems, user: req.user})
+            const  calendarWatered= await Calendar.find()
+            res.render('calendar.ejs', {dayWatered: calendarWatered})
+            // res.render('calendar.ejs', {calendarId: calendarItems, user: req.user})
+            console.log(req.body)
         }catch(err){
             console.log(err)
         }
     },
     createCalendar: async (req, res)=>{
         try{
-            await Calendar.create({calendar: req.body.calendarItem, completed: false, userId: req.user.id, date: 'string I need to pass in from DOM'})
+            await Calendar.create({calendarId: req.user.id, completed: false, userId: req.user.id, date: req.body.value})
             console.log('calendar has been created!')
             res.redirect('/calendar')
         }catch(err){
